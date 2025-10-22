@@ -38,12 +38,6 @@ const Footer = () => {
             <a href="#categories" className="hover:text-white transition">
               Catégories
             </a>
-            <a href="#" className="hover:text-white transition">
-              À propos
-            </a>
-            <a href="#" className="hover:text-white transition">
-              Contactez-nous
-            </a>
           </div>
 
           {/* Contact */}
