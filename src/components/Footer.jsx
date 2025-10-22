@@ -35,14 +35,14 @@ const Footer = () => {
             <a href="#" className="hover:text-white transition">
               Accueil
             </a>
-            <a href="#" className="hover:text-white transition">
-              Produits
+            <a href="#categories" className="hover:text-white transition">
+              Catégories
             </a>
             <a href="#" className="hover:text-white transition">
-              Tendances
+              À propos
             </a>
             <a href="#" className="hover:text-white transition">
-              Contact
+              Contactez-nous
             </a>
           </div>
 
