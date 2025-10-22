@@ -1,0 +1,9 @@
+/* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* si tu veux définir une police globale via CSS, utilise font-family normale */
+body {
+  font-family: "Inter", sans-serif; /* par défaut Inter */
+}
