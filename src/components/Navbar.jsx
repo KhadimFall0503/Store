@@ -33,6 +33,15 @@ const Navbar = () => {
           >
             Catégories
           </a>
+          <a href="#propos" className="hover:text-yellow-600 transition-colors">
+            A propos
+          </a>
+          <a
+            href="#contact"
+            className="hover:text-yellow-600 transition-colors"
+          >
+            Contact
+          </a>
         </nav>
 
         {/* Icônes à droite */}

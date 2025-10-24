@@ -19,7 +19,7 @@ const Hero = () => {
           <br />
           et aimez ce que vous achetez
         </h1>
-        <p className="text-gray-200 md:text-base leading-relaxed font-oswald">
+        <p className="text-gray-200 md:text-base leading-relaxed ">
           Explorez notre sélection tendance et profitez des meilleures offres.
           Que vous cherchiez des vêtements, des accessoires, de l’électronique
           ou des articles pour la maison, nous avons tout ce qu’il vous faut.
