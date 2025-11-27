@@ -1,33 +1,73 @@
-import React from "react";
-import backgroundImage from "../assets/shoping.jpg";
-import { ShoppingBag } from "lucide-react";
+import React, { useState, useEffect } from "react";
+
+const slides = [
+  {
+    image: "/src/assets/shoping.jpg",
+    title: "Nouveautés Tendance",
+    text: "Profitez des meilleures offres sur vêtements et accessoires.",
+  },
+  {
+    image: "/src/assets/shoping2.jpg",
+    title: "Style et Confort",
+    text: "Des tenues tendance pour toutes les occasions.",
+  },
+  {
+    image: "/src/assets/shoping3.jpg",
+    title: "Accessoires Exclusifs",
+    text: "Complétez votre look avec nos accessoires uniques.",
+  },
+];
 
 const Hero = () => {
-  return (
-    <section
-      className="relative bg-cover bg-center min-h-[80vh] flex items-center px-6 md:px-20"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-      id="home"
-    >
-      {/* Overlay sombre + gradient pour lisibilité */}
-      <div className="absolute inset-0 bg-black/50 bg-gradient-to-b from-black/40 to-black/70"></div>
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-      {/* Contenu */}
-      <div className="relative z-10 max-w-3xl text-left text-white space-y-4 font-outfit">
-        <h1 className="text-3xl md:text-5xl font-bold font-montserrat leading-snug tracking-tight">
-          Découvrez votre boutique
-          <br />
-          et aimez ce que vous achetez
-        </h1>
-        <p className="text-gray-200 md:text-base leading-relaxed ">
-          Explorez notre sélection tendance et profitez des meilleures offres.
-          Que vous cherchiez des vêtements, des accessoires, de l’électronique
-          ou des articles pour la maison, nous avons tout ce qu’il vous faut.
-        </p>
-        <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 px-8 py-3 rounded-full font-semibold hover:from-yellow-300 hover:to-yellow-500 flex items-center justify-center transition duration-300 shadow-xl">
-          Acheter Maintenant
-          <ShoppingBag className="ml-2" size={22} />
-        </button>
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000); // Change toutes les 5 secondes
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {slides.map((slide, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentSlide ? "opacity-100 z-10" : "opacity-20 z-0"
+          }`}
+          style={{
+            backgroundImage: `url(${slide.image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/80"></div>
+
+          {/* Texte centré */}
+          <div className="relative z-10 max-w-3xl text-center text-white mx-auto px-4 sm:px-6 md:px-20 space-y-4 font-outfit top-1/2 -translate-y-1/2">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold font-montserrat leading-snug tracking-tight whitespace-nowrap">
+              {slide.title}
+            </h1>
+            <p className="text-gray-200 text-sm sm:text-base md:text-lg leading-relaxed">
+              {slide.text}
+            </p>
+          </div>
+        </div>
+      ))}
+
+      {/* Points / indicateurs */}
+      <div className="absolute bottom-10 w-full flex justify-center gap-3">
+        {slides.map((_, index) => (
+          <span
+            key={index}
+            className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+              index === currentSlide ? "bg-yellow-500 w-4 h-4" : "bg-gray-300"
+            }`}
+            onClick={() => setCurrentSlide(index)}
+          ></span>
+        ))}
       </div>
     </section>
   );
