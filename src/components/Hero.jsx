@@ -29,7 +29,10 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      id="home"
+    >
       {slides.map((slide, index) => (
         <div
           key={index}
