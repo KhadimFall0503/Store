@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between gap-8">
           {/* Logo et description */}
           <div className="flex flex-col gap-4">
-            <h1 className="text-2xl font-bold text-white">Store</h1>
+            <h1 className="text-2xl font-bold text-white">XadimStore</h1>
             <p className="max-w-xs text-gray-400">
               Découvrez nos meilleurs produits et profitez d’une expérience
               shopping moderne et agréable.

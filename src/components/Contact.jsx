@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import axios from "axios";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
 
@@ -14,31 +17,22 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/api/contacts/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const response = await axios.post(
+        "http://localhost:8000/api/contacts/",
+        formData,
+        { headers: { "Content-Type": "application/json" } }
+      );
 
-      if (response.ok) {
-        alert("Message envoyé !");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        const errorData = await response.json();
-        console.error(errorData);
-        alert("Erreur lors de l'envoi du message");
-      }
+      alert("Message envoyé !");
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
-      console.error(error);
-      alert("Erreur réseau, réessayez");
+      console.error(error.response?.data || error);
+      alert("Erreur lors de l'envoi du message");
     }
   };
 
   return (
-    <section
-      className="bg-gray-100 text-gray-900 py-16 px-6 md:px-12"
-      id="contact"
-    >
+    <section className="bg-gray-100 text-gray-900 py-16 px-6 md:px-12">
       <div className="max-w-2xl mx-auto">
         <form
           onSubmit={handleSubmit}
@@ -49,7 +43,7 @@ const Contact = () => {
           </h2>
 
           <div>
-            <label className="block mb-2 font-semibold" htmlFor="name">
+            <label htmlFor="name" className="block mb-2 font-semibold">
               Nom
             </label>
             <input
@@ -64,7 +58,7 @@ const Contact = () => {
           </div>
 
           <div>
-            <label className="block mb-2 font-semibold" htmlFor="email">
+            <label htmlFor="email" className="block mb-2 font-semibold">
               Email
             </label>
             <input
@@ -79,7 +73,22 @@ const Contact = () => {
           </div>
 
           <div>
-            <label className="block mb-2 font-semibold" htmlFor="message">
+            <label htmlFor="subject" className="block mb-2 font-semibold">
+              Sujet
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block mb-2 font-semibold">
               Message
             </label>
             <textarea

@@ -11,18 +11,19 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo principal */}
         <div
-          className="flex items-center gap-2 text-2xl font-bold tracking-tight cursor-pointer"
+          className="flex items-center gap-2 cursor-pointer"
           onClick={() => navigate("/")}
         >
           <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 p-2 rounded-full flex items-center justify-center">
             <ShoppingCart size={28} className="text-white" />
           </div>
-          <span className="text-white hidden sm:inline font-outfit">
+          {/* Texte logo visible sur tous les écrans, taille responsive */}
+          <span className="text-white text-sm sm:text-xl font-outfit font-bold tracking-tight">
             XadimStore
           </span>
         </div>
 
-        {/* Onglets à droite */}
+        {/* Onglets à droite pour desktop */}
         <nav className="hidden md:flex gap-6 items-center">
           <a href="#home" className="hover:text-yellow-400 transition-colors">
             Accueil
@@ -30,7 +31,10 @@ const Navbar = () => {
           <a href="#propos" className="hover:text-yellow-400 transition-colors">
             A propos
           </a>
-          <a href="#services" className="py-2 hover:bg-gray-800 transition">
+          <a
+            href="#services"
+            className="hover:text-yellow-400 transition-colors"
+          >
             Services
           </a>
           <a
@@ -46,7 +50,7 @@ const Navbar = () => {
             Contact
           </a>
 
-          {/* Panier */}
+          {/* Panier desktop */}
           <button
             onClick={() => navigate("/cart")}
             className="relative hover:text-yellow-400 transition duration-200"
@@ -86,6 +90,7 @@ const Navbar = () => {
           <a href="#contact" className="py-2 hover:bg-gray-800 transition">
             Contact
           </a>
+
           {/* Panier mobile */}
           <button
             className="py-2 hover:bg-gray-800 transition relative"
